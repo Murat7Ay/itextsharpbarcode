@@ -1,0 +1,25 @@
+        static void Main(string[] args)
+        {
+
+            List<string> imageUrls = new List<string>();
+
+            using (var ms = new MemoryStream())
+            {
+                iTextSharp.text.Document doc = new iTextSharp.text.Document();
+                PdfWriter.GetInstance(doc, ms);
+                doc.Open();
+
+                for (int i = 0; i < imageUrls.Count; i++)
+                {
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(imageUrls[i]);
+                    img.SetAbsolutePosition(0, 0);
+                    img.ScaleAbsolute(iTextSharp.text.PageSize.A4.Width, iTextSharp.text.PageSize.A4.Height);
+                    doc.NewPage();
+                    doc.Add(img);
+                }
+
+                doc.Close();
+                File.WriteAllBytes("te1st.pdf", ms.ToArray());
+            }
+
+        }
