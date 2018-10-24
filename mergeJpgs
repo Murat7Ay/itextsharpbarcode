@@ -1,5 +1,6 @@
 static Bitmap MergedJpgs(List<string> urls)
         {
+            //https://stackoverflow.com/a/22242360
             //read all images into memory
             List<Bitmap> images = new List<Bitmap>();
             Bitmap finalImage = null;
