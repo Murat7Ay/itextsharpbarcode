@@ -1,0 +1,12 @@
+  public static void SplitAndSave(string url, int partyId)
+        {
+            using (PdfReader reader = new PdfReader(new Uri(url)))
+            {
+                string filename = partyId + ".pdf";
+                Document document = new Document();
+                PdfCopy copy = new PdfCopy(document, new FileStream(@"C:\apideneme\test" + "\\" + filename, FileMode.Create));
+                document.Open();
+                copy.AddPage(copy.GetImportedPage(reader, reader.NumberOfPages));
+                document.Close();
+            }
+        }
